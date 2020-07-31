@@ -1,12 +1,18 @@
 <template>
   <b-container class="bv-example-row">
-    <b-jumbotron header="QT Weasel" lead="Slim simulation for quantum-tensors">
-      <p></p>
-      <b-btn
-        variant="primary"
-        href="https://github.com/Quantum-Game/quantum-tensors/tree/gluecode/src"
-      >See code</b-btn>
-    </b-jumbotron>
+    <b-row>
+      <b-col>
+        <b-jumbotron header="QT Weasel" lead="Slim simulation for quantum-tensors">
+          <b-btn
+            variant="primary"
+            href="https://github.com/Quantum-Game/quantum-tensors/tree/gluecode/src"
+          >See code</b-btn>
+        </b-jumbotron>
+      </b-col>
+      <b-col>
+        <img src="~/assets/peeking_weasel.svg" height="300px" />
+      </b-col>
+    </b-row>
 
     <b-row>
       <b-col>
