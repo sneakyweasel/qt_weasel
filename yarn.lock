@@ -1953,14 +1953,6 @@
   version "2.34.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.34.0.tgz#14aeb6353b39ef0732cc7f1b8285294937cf37d5"
   integrity sha512-OMAr+nJWKdlVM9LOqCqh3pQQPwxHAN7Du8DR6dmwCrAmxtiXQnhHJ6tBNtf+cggqfo51SG/FCwnKhXCIM7hnVg==
-  dependencies:
-    debug "^4.1.1"
-    eslint-visitor-keys "^1.1.0"
-    glob "^7.1.6"
-    is-glob "^4.0.1"
-    lodash "^4.17.15"
-    semver "^7.3.2"
-    tsutils "^3.17.1"
 
 "@typescript-eslint/typescript-estree@3.7.1":
   version "3.7.1"
@@ -9033,7 +9025,7 @@ qs@~6.5.2:
 
 "quantum-tensors@https://github.com/Quantum-Game/quantum-tensors.git#gluecode":
   version "0.4.8"
-  resolved "https://github.com/Quantum-Game/quantum-tensors.git#ab630716a2eb9e74f4fdc142da48d03aa64ec8c9"
+  resolved "https://github.com/Quantum-Game/quantum-tensors.git#6fa0c37c0a58eb7603f34a740d8ccebf16b7a807"
   dependencies:
     "@types/lodash" "^4.14.138"
     lodash "^4.17.15"
