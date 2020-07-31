@@ -1,4 +1,7 @@
-# qt_weasel
+# QT Weasel
+
+Slim simulation for quantum-tensors
+Nothing a cute weasel can't solve.
 
 ## Build Setup
 
@@ -16,5 +19,3 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

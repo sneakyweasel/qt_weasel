@@ -4,7 +4,7 @@
       <b-col>
         <h3>
           Frame {{ index }}
-          <small>({{ frame.probability * 100 }}%)</small>
+          <small>({{ formatPercentage(frame.probability) }})</small>
         </h3>
         {{ frame.vector }}
         <div v-if="frame.particles.length > 0">
@@ -16,9 +16,9 @@
           <h4>Absorptions</h4>
           <b-table striped hover :items="frame.absorptions"></b-table>
         </div>
-        <hr />
       </b-col>
     </b-row>
+    <hr />
   </b-container>
 </template>
 
@@ -31,6 +31,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class FrameComponent extends Vue {
   @Prop() readonly frame!: qt.Frame
   @Prop() readonly index!: number
+
+  formatPercentage(value: number): string {
+    return (value * 100).toFixed(2).toString() + '%'
+  }
 }
 </script>
 

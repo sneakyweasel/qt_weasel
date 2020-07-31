@@ -20,7 +20,7 @@
           Grid
           <small>(X: {{ sim.grid.cols }} - Y: {{ sim.grid.rows }})</small>
         </h1>
-        <p>Load IGrid object in JSON</p>
+        <p class="lead">Load IGrid object in JSON</p>
         <b-table striped hover :items="sim.grid.cells"></b-table>
       </b-col>
     </b-row>
@@ -32,7 +32,7 @@
           Operators
           <small>({{ sim.operators.length }})</small>
         </h1>
-        <p>Convert cells into operators, display non one values.</p>
+        <p class="lead">Convert cells into operators</p>
         <b-table striped hover :items="sim.operators"></b-table>
       </b-col>
     </b-row>
@@ -44,7 +44,7 @@
           Global Operators
           <small>({{ sim.globalOperator.entries.length }})</small>
         </h1>
-        <p>Merge operators into a global operator</p>
+        <p class="lead">Merge operators into a global operator</p>
         {{ sim.globalOperator.entries.length }} entries
         <br />
         {{ sim.globalOperator.entries[0] }}
@@ -55,9 +55,7 @@
     <b-row>
       <b-col>
         <h1>Fire laz0rs!</h1>
-        <ul>
-          <li>Convert laser cell to an IIndicator.</li>
-        </ul>
+        <p class="lead">Convert laser cell to an IIndicator and generate first frame.</p>
         <b-table striped hover :items="[laserIndicator]"></b-table>
       </b-col>
     </b-row>
@@ -66,12 +64,23 @@
     <b-row>
       <b-col>
         <h1>
-          Frames
+          Simulate
           <small>({{ sim.frames.length }})</small>
         </h1>
         <div v-for="(frame, index) in sim.frames" :key="'frame' + index">
           <FrameComponent :frame="frame" :index="index" />
         </div>
+      </b-col>
+    </b-row>
+
+    <hr />
+    <b-row>
+      <b-col>
+        <h1>
+          Absorptions
+          <small>({{ absorptions.length }})</small>
+        </h1>
+        <b-table striped hover :items="absorptions"></b-table>
       </b-col>
     </b-row>
   </b-container>
@@ -103,7 +112,8 @@ export default class SimulationPage extends Vue {
           y: 1,
           x: 3,
         },
-        element: 'Mirror',
+        // element: 'Mirror',
+        element: 'BeamSplitter',
         rotation: 135,
         polarization: 0,
       },
@@ -120,9 +130,10 @@ export default class SimulationPage extends Vue {
   }
 
   sim = new qt.Simulation(this.grid1)
-  laserIndicator = this.sim.initializeFromLaser()
-  initFrame = this.sim.lastFrame
+  laserIndicator = this.sim.generateLaserIndicator()
+  initFrame = this.sim.initializeFromIndicator(this.laserIndicator)
   test = this.sim.generateFrames()
+  absorptions = this.sim.totalAbsorptionPerTile
 }
 </script>
 

@@ -1,5 +1,6 @@
 {
   "name": "qt_weasel",
+  "author": "sneaky_weasel",
   "version": "1.0.0",
   "private": true,
   "scripts": {
