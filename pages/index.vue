@@ -3,10 +3,23 @@
     <b-row>
       <b-col>
         <b-jumbotron header="QT Weasel" lead="Slim simulation for quantum-tensors">
-          <b-btn
-            variant="primary"
+          <!-- <b-btn
+            variant="secondary"
             href="https://github.com/Quantum-Game/quantum-tensors/tree/gluecode/src"
-          >See code</b-btn>
+          >
+            quantum-tensors
+            <b-icon-code-slash></b-icon-code-slash>
+          </b-btn>
+          <b-btn variant="secondary" href="https://github.com/sneakyweasel/qt_weasel">
+            Github
+            <b-icon-code-slash></b-icon-code-slash>
+          </b-btn>-->
+
+          <b-form-select
+            v-model="selectedLevel"
+            :options="generateLevelOptions()"
+            @change="loadLevel(selectedLevel)"
+          ></b-form-select>
         </b-jumbotron>
       </b-col>
       <b-col>
@@ -16,67 +29,48 @@
 
     <b-row>
       <b-col>
-        <h1>
+        <h1 id="grid">
           Grid
-          <small>(X: {{ sim.grid.cols }} - Y: {{ sim.grid.rows }})</small>
+          <small>({{ sim.grid.cols }}x{{ sim.grid.rows }})</small>
         </h1>
         <p class="lead">Load IGrid object in JSON</p>
-        <b-table striped hover :items="sim.grid.cells"></b-table>
-      </b-col>
-    </b-row>
 
-    <hr />
-    <b-row>
-      <b-col>
-        <h1>
+        <b-table striped hover :items="sim.grid.cells"></b-table>
+        <hr />
+
+        <h1 id="operators">
           Operators
           <small>({{ sim.operators.length }})</small>
         </h1>
         <p class="lead">Convert cells into operators</p>
         <b-table striped hover :items="sim.operators"></b-table>
-      </b-col>
-    </b-row>
+        <hr />
 
-    <hr />
-    <b-row>
-      <b-col>
-        <h1>
-          Global Operators
+        <h1 id="global-operator">
+          Global Operator
           <small>({{ sim.globalOperator.entries.length }})</small>
         </h1>
         <p class="lead">Merge operators into a global operator</p>
         {{ sim.globalOperator.entries.length }} entries
         <br />
         {{ sim.globalOperator.entries[0] }}
-      </b-col>
-    </b-row>
+        <hr />
 
-    <hr />
-    <b-row>
-      <b-col>
-        <h1>Fire laz0rs!</h1>
+        <h1 id="lasers">Fire laz0rs!</h1>
         <p class="lead">Convert laser cell to an IIndicator and generate first frame.</p>
         <b-table striped hover :items="[laserIndicator]"></b-table>
-      </b-col>
-    </b-row>
+        <hr />
 
-    <hr />
-    <b-row>
-      <b-col>
-        <h1>
-          Simulate
+        <h1 id="simulation">
+          Simulation
           <small>({{ sim.frames.length }})</small>
         </h1>
         <div v-for="(frame, index) in sim.frames" :key="'frame' + index">
           <FrameComponent :frame="frame" :index="index" />
         </div>
-      </b-col>
-    </b-row>
+        <hr />
 
-    <hr />
-    <b-row>
-      <b-col>
-        <h1>
+        <h1 id="absorptions">
           Absorptions
           <small>({{ absorptions.length }})</small>
         </h1>
@@ -90,50 +84,52 @@
 import * as qt from 'quantum-tensors'
 import { Component, Vue } from 'vue-property-decorator'
 import FrameComponent from '@/components/Frame.vue'
+import levels from '@/assets/levels.json'
+import { IGrid } from 'quantum-tensors/dist/interfaces'
+
 @Component({
   components: { FrameComponent },
 })
 export default class SimulationPage extends Vue {
-  grid1 = {
-    cols: 15,
-    rows: 15,
-    cells: [
-      {
-        coord: {
-          y: 1,
-          x: 1,
-        },
-        element: 'Laser',
-        rotation: 0,
-        polarization: 0,
-      },
-      {
-        coord: {
-          y: 1,
-          x: 3,
-        },
-        // element: 'Mirror',
-        element: 'BeamSplitter',
-        rotation: 135,
-        polarization: 0,
-      },
-      {
-        coord: {
-          y: 3,
-          x: 3,
-        },
-        element: 'Detector',
-        rotation: 180,
-        polarization: 0,
-      },
-    ],
-  }
-
-  sim = new qt.Simulation(this.grid1)
+  selectedLevel = 1
+  grid = this.convertLevel(this.selectedLevel)
+  sim = new qt.Simulation(this.grid)
   laserIndicator = this.sim.generateLaserIndicator()
   initFrame = this.sim.initializeFromIndicator(this.laserIndicator)
   test = this.sim.generateFrames()
   absorptions = this.sim.totalAbsorptionPerTile
+
+  generateLevelOptions() {
+    return levels.map((level: any) => {
+      return { value: level.id, text: `${level.name} (${level.id})` }
+    })
+  }
+
+  convertLevel(id: number): IGrid {
+    id -= 1
+    return {
+      cols: levels[id].grid.cols,
+      rows: levels[id].grid.rows,
+      cells: levels[id].grid.cells.map((cell: any) => {
+        return {
+          x: cell.coord.x,
+          y: cell.coord.y,
+          element: cell.element,
+          rotation: cell.rotation,
+          polarization: cell.polarization || 0,
+        }
+      }),
+    }
+  }
+
+  loadLevel(id: number): void {
+    const grid = this.convertLevel(id)
+    this.sim = new qt.Simulation(grid)
+    this.laserIndicator = this.sim.generateLaserIndicator()
+    this.initFrame = this.sim.initializeFromIndicator(this.laserIndicator)
+    this.sim.generateFrames()
+    this.absorptions = this.sim.totalAbsorptionPerTile
+  }
 }
 </script>
 
