@@ -103,21 +103,7 @@ import * as qt from 'quantum-tensors'
 import { Component, Vue } from 'vue-property-decorator'
 import FrameComponent from '@/components/Frame.vue'
 import levels from '@/assets/levels.json'
-
-export interface IGrid {
-  cols: number
-  rows: number
-  cells: ICell[]
-}
-
-export interface ICell {
-  x: number
-  y: number
-  element: string
-  rotation: number
-  polarization: number
-  percentage?: number
-}
+import { IGrid } from 'quantum-tensors/dist/interfaces'
 
 @Component({
   components: { FrameComponent },
