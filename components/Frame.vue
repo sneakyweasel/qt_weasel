@@ -1,25 +1,19 @@
 <template>
-  <b-container class="bv-example-row">
-    <b-row>
-      <b-col>
-        <h3>
-          Frame {{ index }}
-          <small>({{ formatPercentage(frame.probability) }})</small>
-        </h3>
-        {{ frame.vector }}
-        <div v-if="frame.particles.length > 0">
-          <h4>Photons</h4>
-          <b-table striped hover :items="frame.particles"></b-table>
-        </div>
+  <b-card>
+    <b-card-title>
+      Frame {{ index }}
+      <small>({{ formatPercentage(frame.probability) }})</small>
+    </b-card-title>
+    {{ frame.vector }}
+    <div v-if="frame.particles.length > 0">
+      <b-table striped hover :items="frame.particles"></b-table>
+    </div>
 
-        <div v-if="frame.absorptions.length > 0">
-          <h4>Absorptions</h4>
-          <b-table striped hover :items="frame.absorptions"></b-table>
-        </div>
-      </b-col>
-    </b-row>
-    <hr />
-  </b-container>
+    <div v-if="frame.absorptions.length > 0">
+      <h4>Absorptions</h4>
+      <b-table striped hover :items="frame.absorptions"></b-table>
+    </div>
+  </b-card>
 </template>
 
 <script lang="ts">

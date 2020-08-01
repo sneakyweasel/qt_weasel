@@ -1,29 +1,48 @@
 <template>
   <b-container class="bv-example-row">
     <b-row>
-      <b-col>
+      <b-col cols="8">
         <b-jumbotron header="QT Weasel" lead="Slim simulation for quantum-tensors">
-          <!-- <b-btn
-            variant="secondary"
-            href="https://github.com/Quantum-Game/quantum-tensors/tree/gluecode/src"
-          >
-            quantum-tensors
-            <b-icon-code-slash></b-icon-code-slash>
-          </b-btn>
-          <b-btn variant="secondary" href="https://github.com/sneakyweasel/qt_weasel">
-            Github
-            <b-icon-code-slash></b-icon-code-slash>
-          </b-btn>-->
-
-          <b-form-select
-            v-model="selectedLevel"
-            :options="generateLevelOptions()"
-            @change="loadLevel(selectedLevel)"
-          ></b-form-select>
+          <b-row>
+            <b-col cols="6">
+              <b-form-select
+                v-model="selectedLevel"
+                :options="generateLevelOptions()"
+                @change="loadLevel(selectedLevel)"
+              ></b-form-select>
+            </b-col>
+            <b-col>
+              <b-btn
+                variant="outline-secondary"
+                href="https://github.com/Quantum-Game/quantum-tensors/tree/gluecode/src"
+              >
+                <b-icon-code-slash></b-icon-code-slash>
+              </b-btn>
+              <b-btn variant="outline-secondary" href="https://github.com/sneakyweasel/qt_weasel">
+                <b-icon-code-slash></b-icon-code-slash>
+              </b-btn>
+            </b-col>
+          </b-row>
         </b-jumbotron>
       </b-col>
       <b-col>
         <img src="~/assets/peeking_weasel.svg" height="300px" />
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <b-col>
+        <b-breadcrumb>
+          <b-breadcrumb-item href="#grid">
+            <b-icon icon="grid"></b-icon>
+          </b-breadcrumb-item>
+          <b-breadcrumb-item href="#grid">Grid</b-breadcrumb-item>
+          <b-breadcrumb-item href="#operators">Operators</b-breadcrumb-item>
+          <b-breadcrumb-item href="#global-operator">Global operator</b-breadcrumb-item>
+          <b-breadcrumb-item href="#lasers">Laser indicator</b-breadcrumb-item>
+          <b-breadcrumb-item href="#simulation">Simulation</b-breadcrumb-item>
+          <b-breadcrumb-item href="#absorptions">Absorptions</b-breadcrumb-item>
+        </b-breadcrumb>
       </b-col>
     </b-row>
 
@@ -34,7 +53,6 @@
           <small>({{ sim.grid.cols }}x{{ sim.grid.rows }})</small>
         </h1>
         <p class="lead">Load IGrid object in JSON</p>
-
         <b-table striped hover :items="sim.grid.cells"></b-table>
         <hr />
 
