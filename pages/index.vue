@@ -124,20 +124,7 @@ export default class SimulationPage extends Vue {
   }
 
   convertLevel(id: number): IGrid {
-    id -= 1
-    return {
-      cols: levels[id].grid.cols,
-      rows: levels[id].grid.rows,
-      cells: levels[id].grid.cells.map((cell: any) => {
-        return {
-          x: cell.coord.x,
-          y: cell.coord.y,
-          element: cell.element,
-          rotation: cell.rotation,
-          polarization: cell.polarization || 0,
-        }
-      }),
-    }
+    return levels[id - 1].grid
   }
 
   loadLevel(id: number): void {

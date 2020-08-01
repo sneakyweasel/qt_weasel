@@ -7,20 +7,16 @@
       "rows": 10,
       "cells": [
         {
-          "coord": {
-            "y": 2,
-            "x": 3
-          },
+          "y": 2,
+          "x": 3,
           "element": "Laser",
           "rotation": 0,
           "polarization": 0,
           "strength": 0
         },
         {
-          "coord": {
-            "y": 2,
-            "x": 9
-          },
+          "y": 2,
+          "x": 9,
           "element": "Detector",
           "rotation": 180,
           "polarization": 0,
@@ -38,80 +34,64 @@
       "rows": 10,
       "cells": [
         {
-          "coord": {
-            "y": 2,
-            "x": 3
-          },
+          "y": 2,
+          "x": 3,
           "element": "Laser",
           "rotation": 0,
           "polarization": 0,
           "strength": 0
         },
         {
-          "coord": {
-            "y": 1,
-            "x": 6
-          },
+          "y": 1,
+          "x": 6,
           "element": "Rock",
           "rotation": 0,
           "polarization": 0,
           "strength": 0
         },
         {
-          "coord": {
-            "y": 4,
-            "x": 3
-          },
+          "y": 4,
+          "x": 3,
           "element": "Detector",
           "rotation": 0,
           "polarization": 0,
           "strength": 0
         },
         {
-          "coord": {
-            "y": 2,
-            "x": 6
-          },
+          "y": 2,
+          "x": 6,
           "element": "Mirror",
           "rotation": 45,
           "polarization": 0,
           "strength": 0
         },
         {
-          "coord": {
-            "y": 6,
-            "x": 9
-          },
+          "y": 6,
+          "x": 9,
           "element": "Mirror",
           "rotation": 135,
           "polarization": 0,
           "strength": 0
         },
         {
-          "coord": {
-            "y": 4,
-            "x": 9
-          },
+          "y": 4,
+          "x": 9,
           "element": "Mirror",
           "rotation": 135,
           "polarization": 0,
           "strength": 0
         },
         {
-          "coord": {
-            "y": 6,
-            "x": 6
-          },
+          "y": 6,
+          "x": 6,
           "element": "Mirror",
           "rotation": 135,
           "polarization": 0,
           "strength": 0
         },
         {
-          "coord": {
-            "y": 8,
-            "x": 9
-          },
+          "y": 8,
+          "x": 9,
           "element": "Rock",
           "rotation": 0,
           "polarization": 0,
