@@ -4,7 +4,8 @@
       Frame {{ index }}
       <small>({{ formatPercentage(frame.probability) }})</small>
     </b-card-title>
-    {{ frame.vector }}
+    <!-- {{ frame.vector }} -->
+    <!-- {{ frame.vector.entries }} -->
     <div v-if="frame.particles.length > 0">
       <b-table striped hover :items="frame.particles"></b-table>
     </div>
@@ -26,6 +27,7 @@ export default class FrameComponent extends Vue {
   @Prop() readonly frame!: qt.Frame
   @Prop() readonly index!: number
 
+  test = this.frame.vector.entries
   formatPercentage(value: number): string {
     return (value * 100).toFixed(2).toString() + '%'
   }

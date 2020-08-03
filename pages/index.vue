@@ -50,38 +50,57 @@
       <b-col>
         <h1 id="grid">
           Grid
-          <small>({{ sim.grid.cols }}x{{ sim.grid.rows }})</small>
+          <small>
+            <span class="badge badge-pill badge-secondary">{{ sim.grid.cols }}x{{ sim.grid.rows }}</span>
+          </small>
         </h1>
-        <p class="lead">Load IGrid object in JSON</p>
+        <p class="lead">Load grid JSON</p>
         <b-table striped hover :items="sim.grid.cells"></b-table>
         <hr />
 
         <h1 id="operators">
           Operators
-          <small>({{ sim.operators.length }})</small>
+          <small>
+            <span class="badge badge-pill badge-secondary">{{ sim.operators.length }}</span>
+          </small>
         </h1>
-        <p class="lead">Convert cells into operators</p>
-        <b-table striped hover :items="sim.operators"></b-table>
+        <p class="lead">Convert grid cells into operators</p>
+        <!-- <b-table striped hover :items="sim.operators"></b-table> -->
+        <div v-for="(cell, index) in sim.grid.cells" :key="'operator' + index">
+          <operator :cell="cell" :dark-mode="false" />
+        </div>
         <hr />
 
         <h1 id="global-operator">
           Global Operator
-          <small>({{ sim.globalOperator.entries.length }})</small>
+          <small>
+            <span class="badge badge-pill badge-secondary">{{ sim.globalOperator.entries.length }}</span>
+          </small>
         </h1>
         <p class="lead">Merge operators into a global operator</p>
         {{ sim.globalOperator.entries.length }} entries
         <br />
         {{ sim.globalOperator.entries[0] }}
+        <div>
+          <!-- <matrix-viewer :operator-raw="sim.globalOperator" :dark-mode="false" /> -->
+        </div>
         <hr />
 
-        <h1 id="lasers">Fire laz0rs!</h1>
+        <h1 id="lasers">
+          Photon indicator
+          <small>
+            <span class="badge badge-pill badge-secondary">{{ 1 }}</span>
+          </small>
+        </h1>
         <p class="lead">Convert laser cell to an IIndicator and generate first frame.</p>
         <b-table striped hover :items="[laserIndicator]"></b-table>
         <hr />
 
         <h1 id="simulation">
           Simulation
-          <small>({{ sim.frames.length }})</small>
+          <small>
+            <span class="badge badge-pill badge-secondary">{{ sim.frames.length }}</span>
+          </small>
         </h1>
         <div v-for="(frame, index) in sim.frames" :key="'frame' + index">
           <FrameComponent :frame="frame" :index="index" />
@@ -102,11 +121,29 @@
 import * as qt from 'quantum-tensors'
 import { Component, Vue } from 'vue-property-decorator'
 import FrameComponent from '@/components/Frame.vue'
+import Operator from '@/components/Operator.vue'
+import OperatorComponent from '@/components/OperatorComponent.vue'
 import levels from '@/assets/levels.json'
-import { IGrid } from 'quantum-tensors/dist/interfaces'
+import { MatrixViewer } from 'bra-ket-vue'
+// import { IGrid } from 'quantum-tensors/dist/interfaces'
+
+export interface IGrid {
+  cols: number
+  rows: number
+  cells: ICell[]
+}
+
+export interface ICell {
+  x: number
+  y: number
+  element: string
+  rotation: number
+  polarization: number
+  strength?: number
+}
 
 @Component({
-  components: { FrameComponent },
+  components: { FrameComponent, Operator, OperatorComponent, MatrixViewer },
 })
 export default class SimulationPage extends Vue {
   selectedLevel = 1
@@ -124,12 +161,13 @@ export default class SimulationPage extends Vue {
   }
 
   convertLevel(id: number): IGrid {
-    return levels[id - 1].grid
+    id -= 1
+    return levels[id].grid
   }
 
   loadLevel(id: number): void {
-    const grid = this.convertLevel(id)
-    this.sim = new qt.Simulation(grid)
+    this.grid = this.convertLevel(id)
+    this.sim = new qt.Simulation(this.grid)
     this.laserIndicator = this.sim.generateLaserIndicator()
     this.initFrame = this.sim.initializeFromIndicator(this.laserIndicator)
     this.sim.generateFrames()
@@ -138,4 +176,12 @@ export default class SimulationPage extends Vue {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped>
+h3 {
+  text-transform: uppercase;
+  padding-top: 50px;
+}
+a {
+  color: #424ab9;
+}
+</style>

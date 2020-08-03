@@ -3,21 +3,37 @@
     "id": 1,
     "name": "The beginning",
     "grid": {
-      "cols": 13,
-      "rows": 10,
+      "cols": 3,
+      "rows": 3,
       "cells": [
         {
-          "y": 2,
-          "x": 3,
+          "x": 1,
+          "y": 1,
           "element": "Laser",
           "rotation": 0,
           "polarization": 0,
           "strength": 0
         },
         {
+          "x": 2,
+          "y": 1,
+          "element": "BeamSplitter",
+          "rotation": 45,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "x": 1,
           "y": 2,
-          "x": 9,
-          "element": "Detector",
+          "element": "SugarSolution",
+          "rotation": 0,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "element": "FaradayRotator",
           "rotation": 180,
           "polarization": 0,
           "strength": 0
@@ -34,66 +50,184 @@
       "rows": 10,
       "cells": [
         {
-          "y": 2,
           "x": 3,
+          "y": 2,
           "element": "Laser",
           "rotation": 0,
           "polarization": 0,
           "strength": 0
         },
         {
-          "y": 1,
           "x": 6,
+          "y": 1,
           "element": "Rock",
           "rotation": 0,
           "polarization": 0,
           "strength": 0
         },
         {
-          "y": 4,
           "x": 3,
+          "y": 4,
           "element": "Detector",
           "rotation": 0,
           "polarization": 0,
           "strength": 0
         },
         {
-          "y": 2,
           "x": 6,
+          "y": 2,
           "element": "Mirror",
           "rotation": 45,
           "polarization": 0,
           "strength": 0
         },
         {
-          "y": 6,
           "x": 9,
+          "y": 6,
           "element": "Mirror",
           "rotation": 135,
           "polarization": 0,
           "strength": 0
         },
         {
+          "x": 9,
           "y": 4,
-          "x": 9,
           "element": "Mirror",
           "rotation": 135,
           "polarization": 0,
           "strength": 0
         },
         {
-          "y": 6,
           "x": 6,
+          "y": 6,
           "element": "Mirror",
           "rotation": 135,
           "polarization": 0,
           "strength": 0
         },
         {
-          "y": 8,
           "x": 9,
+          "y": 8,
           "element": "Rock",
           "rotation": 0,
+          "polarization": 0,
+          "strength": 0
+        }
+      ]
+    }
+  },
+
+  {
+    "id": 3,
+    "name": "Drag & Drop",
+    "grid": {
+      "cols": 13,
+      "rows": 10,
+      "cells": [
+        {
+          "x": 3,
+          "y": 2,
+          "element": "Laser",
+          "rotation": 0,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "x": 6,
+          "y": 2,
+          "element": "Rock",
+          "rotation": 0,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "x": 9,
+          "y": 2,
+          "element": "Detector",
+          "rotation": 270,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "y": 5,
+          "x": 5,
+          "element": "Mirror",
+          "rotation": 135,
+          "polarization": 0,
+          "strength": 0
+        }
+      ]
+    }
+  },
+
+  {
+    "id": 4,
+    "name": "Divide and Conquer!",
+    "grid": {
+      "cols": 13,
+      "rows": 10,
+      "cells": [
+        {
+          "x": 6,
+          "y": 1,
+          "element": "Detector",
+          "rotation": 270,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "x": 4,
+          "y": 1,
+          "element": "Detector",
+          "rotation": 270,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "x": 2,
+          "y": 3,
+          "element": "Detector",
+          "rotation": 360,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "x": 2,
+          "y": 9,
+          "element": "Rock",
+          "rotation": 0,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "x": 10,
+          "y": 5,
+          "element": "Detector",
+          "rotation": 180,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "x": 2,
+          "y": 5,
+          "element": "Laser",
+          "rotation": 0,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "x": 6,
+          "y": 2,
+          "element": "BeamSplitter",
+          "rotation": 45,
+          "polarization": 0,
+          "strength": 0
+        },
+        {
+          "x": 8,
+          "y": 7,
+          "element": "Detector",
+          "rotation": 90,
           "polarization": 0,
           "strength": 0
         }
